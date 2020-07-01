@@ -355,6 +355,23 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    // create an obj to cache results
+    var cachedResults = {};
+    // return a fn where
+    return function() {
+      // we check if arguments doesn't exists in our obj
+      var args = JSON.stringify(arguments);
+      if(cachedResults[args] === undefined) {
+        // we add the arguments as key to our obj and the result of calling func as value
+        cachedResults[args] = func.apply(this, arguments);
+        // return the obj value (the result)
+        return cachedResults[args];
+      // otherwise
+      } else {
+        // return the value associated with the argument
+        return cachedResults[args];
+      }
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
