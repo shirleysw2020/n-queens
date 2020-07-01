@@ -110,6 +110,11 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    // return call filter on the collection and test fn
+    return _.filter(collection, function(item) {
+      // return opposite of the result of calling test on item
+      return !test(item);
+    });
   };
 
   // Produce a duplicate-free version of the array.
