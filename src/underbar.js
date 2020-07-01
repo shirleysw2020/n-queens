@@ -285,7 +285,7 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    // use each to loop over the arguments and anonymous iterator function that takes in a value called newObj
+    // use each to loop over the arguments and iterator function that takes in a value called newObj
     _.each(arguments, function(newObj) {
       // loop over properties of newObj
       _.each(newObj, function(value, key) {
@@ -300,6 +300,18 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var args = Array.from(arguments);
+    _.each(args, function(newObj) {
+      // loop over properties of newObj
+      _.each(newObj, function(value, key) {
+        // add keys and values of newObj to obj
+        if (obj[key] === undefined) {
+          obj[key] = value;
+        }
+      });
+    });
+    // return obj
+    return obj;
   };
 
 
