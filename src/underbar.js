@@ -121,9 +121,6 @@
   _.uniq = function(array, isSorted, iterator) {
 
     iterator = iterator || _.identity;
-    // if no iterator provided
-      // set iterator to be identity
-
     // create an empty obj uniq
     var uniqVals = {};
     // create an empty result array
@@ -153,6 +150,18 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+
+    // create a result array
+    var mappedVals = [];
+
+    // use each to loop over collection
+    _.each(collection, function(element) {
+      // call iterator on current element and push to result
+      mappedVals.push(iterator(element));
+    })
+
+    // return result array
+    return mappedVals;
   };
 
   /*
