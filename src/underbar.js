@@ -119,6 +119,32 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+
+    iterator = iterator || _.identity;
+    // if no iterator provided
+      // set iterator to be identity
+
+    // create an empty obj uniq
+    var uniqVals = {};
+    // create an empty result array
+    var results = [];
+
+    // loop over array with each
+    _.each(array, function(element) {
+      // add element to obj with key as iterator on element and value as element
+      if (uniqVals[iterator(element)] === undefined) {
+        uniqVals[iterator(element)] = element;
+      }
+    });
+
+    // loop over object
+    _.each(uniqVals, function(value) {
+      // push values to result array
+      results.push(value);
+    });
+
+    // return results
+    return results;
   };
 
 
