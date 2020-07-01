@@ -381,6 +381,11 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    // use setTimeout with params of anonymous function and wait
+    setTimeout(function() {
+      // inside anon function, call func on arguments
+      func(arguments);
+    }, wait);
   };
 
 
